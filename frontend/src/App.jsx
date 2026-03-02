@@ -13,6 +13,7 @@ import DownloadSection from './components/DownloadSection'
 import HistoryModal from './components/HistoryModal'
 import NucleotideParticles from './components/backgrounds/NucleotideParticles'
 import { saveToHistory } from './utils/historyManager'
+import { API_BASE_URL } from './config'
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null)
@@ -90,14 +91,14 @@ function App() {
       if (patientHistory.smokingStatus) formData.append('smoking_status', patientHistory.smokingStatus)
       if (patientHistory.alcoholUse) formData.append('alcohol_use', patientHistory.alcoholUse)
 
-      const response = await fetch('/api/analyze', {
+      const response = await fetch(`${API_BASE_URL}/analyze`, {
         method: 'POST',
         body: formData,
       })
 
       if (!response.ok) {
         if (response.status === 404) {
-          throw new Error('Backend API not found. Please ensure the backend server is running on http://localhost:8000')
+          throw new Error('Backend API not found. Please ensure the backend server URL is configured correctly.')
         }
         const errorData = await response.json().catch(() => ({}))
         throw new Error(errorData.detail || `Analysis failed: ${response.statusText}`)

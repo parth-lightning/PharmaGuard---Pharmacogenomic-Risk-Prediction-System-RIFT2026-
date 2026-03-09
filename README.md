@@ -147,7 +147,7 @@
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/Nisarg2615/RIFT2026.git
+git clone https://github.com/parth-lightning/PharmaGuard---Pharmacogenomic-Risk-Prediction-System-RIFT2026-.git
 cd RIFT2026
 ```
 
